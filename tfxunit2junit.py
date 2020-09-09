@@ -92,7 +92,7 @@ def get_about_text(docs_url, issues_url):
     if issues_url:
         issues_text = 'Found a bug? Please open an issue in the issue tracker: {url}\n'.format(url=issues_url)
     about_text = '''
-\n{docs_text}{issues_text}
+{docs_text}{issues_text}
 '''.format(docs_text=docs_text, issues_text=issues_text)
     return about_text
 
@@ -143,7 +143,7 @@ def has_testcases(xml):
     """
     if hasattr(xml.testsuite[0], 'testcase'):
         return True
-    
+
     return False
 
 
