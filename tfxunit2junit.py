@@ -90,11 +90,9 @@ def get_about_text(docs_url, issues_url):
     if docs_url:
         docs_text = 'Find out more about this test in the documentation: {url}\n'.format(url=docs_url)
     if issues_url:
-        issues_text = 'Found a bug? Please create an issue in the issue tracker: {url}\n'.format(url=issues_url)
+        issues_text = 'Found a bug? Please open an issue in the issue tracker: {url}\n'.format(url=issues_url)
     about_text = '''
-\n
-{docs_text}
-{issues_text}
+\n{docs_text}{issues_text}
 '''.format(docs_text=docs_text, issues_text=issues_text)
     return about_text
 
