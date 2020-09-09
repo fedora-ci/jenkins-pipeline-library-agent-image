@@ -178,6 +178,7 @@ def main(args):
                     logs = get_test_logs(log.attrib['href'])
                     if not logs:
                         logs = '(empty output)'
+                    break
                 elif log.attrib['name'] == 'log_dir':
                     logs = 'Logs: {logs_url}'.format(logs_url=log.attrib['href'])
 
