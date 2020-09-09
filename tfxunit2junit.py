@@ -183,19 +183,19 @@ def main(args):
                     logs = 'Logs: {logs_url}'.format(logs_url=log.attrib['href'])
 
             test_name = testcase.attrib['name']
-            result = testcase.attrib['result']
+            result = testcase.attrib['result'].lower()
 
             tests += 1
 
-            if result in ('passed', 'PASS'):
+            if result in ('passed', 'pass'):
                 add_success(output_xml, test_name, logs, docs_url=args.docs_url, issues_url=args.issues_url)
-            elif result in ('failed', 'FAIL'):
+            elif result in ('failed', 'fail'):
                 add_failure(output_xml, test_name, logs, docs_url=args.docs_url, issues_url=args.issues_url)
                 failures += 1
-            elif result in ('error', 'ERROR'):
+            elif result in ('error', 'errored'):
                 add_error(output_xml, test_name, logs, issues_url=args.issues_url)
                 errors += 1
-            elif result in ('skipped', 'SKIP'):
+            elif result in ('skipped', 'skip'):
                 add_skipped(output_xml, test_name, logs, docs_url=args.docs_url, issues_url=args.issues_url)
                 skipped += 1
 
