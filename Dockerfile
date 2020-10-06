@@ -10,6 +10,9 @@ RUN mkdir -p ${TOOLS_DIR} &&\
 RUN yum -y install \
     koji \
     python3-pip \
+    fedpkg \
+    git \
+    rpm-build \
     && yum clean all
 
 ADD requirements.txt /tmp/
