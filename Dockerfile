@@ -7,10 +7,13 @@ ENV TOOLS_DIR=/tools/
 RUN mkdir -p ${TOOLS_DIR} &&\
     chmod 777 ${TOOLS_DIR}
 
+RUN yum -y install epel-release
+
 RUN yum -y install \
     koji \
     python3-pip \
     fedpkg \
+    python2-docutils \
     git \
     rpm-build \
     && yum clean all
