@@ -13,25 +13,29 @@ from lxml import objectify
 import requests
 
 
-def to_cdata(text):
+def to_cdata(output, text):
     """Prepare text (logs) to be part of the final JUnit.
-    
+
     TODO: I *think* some escaping will be needed here (?)
-    
+
     :param text: str or bytes, text to process
     :return: str, text that can be safely added to the JUnit file
     """
     if isinstance(text, str):
-        return '{output}'.format(output=text)
+        cdata = '{output}'.format(output=text)
     else:
-        return '{output}'.format(output=text.decode())
+        cdata = '{output}'.format(output=text.decode())
+    try:
+        output.text = cdata
+    except ValueError:
+        output.text = repr(cdata)
 
 
 def add_success(xml, test_name, logs, classname='tests', docs_url=None, issues_url=None):
     """Add entry for a successful test."""
     testcase = etree.SubElement(xml, 'testcase', name=test_name, classname=classname)
     output = etree.SubElement(testcase, 'system-out')
-    output.text = to_cdata(logs)
+    to_cdata(output, logs)
 
 
 def add_failure(xml, test_name, logs, classname='tests', docs_url=None, issues_url=None):
@@ -44,7 +48,7 @@ def add_failure(xml, test_name, logs, classname='tests', docs_url=None, issues_u
         message='Test "{name}" failed.\n{about}'.format(name=test_name, about=get_about_text(docs_url, issues_url))
     )
     output = etree.SubElement(testcase, 'system-out')
-    output.text = to_cdata(logs)
+    to_cdata(output, logs)
 
 
 def add_error(xml, test_name, logs, classname='tests', docs_url=None, issues_url=None):
@@ -59,7 +63,7 @@ def add_error(xml, test_name, logs, classname='tests', docs_url=None, issues_url
         )
     )
     output = etree.SubElement(testcase, 'system-out')
-    output.text = to_cdata(logs)
+    to_cdata(output, logs)
 
 
 def add_skipped(xml, test_name, logs, classname='tests', docs_url=None, issues_url=None):
@@ -74,13 +78,13 @@ def add_skipped(xml, test_name, logs, classname='tests', docs_url=None, issues_u
         )
     )
     output = etree.SubElement(testcase, 'system-out')
-    output.text = to_cdata(logs)
+    to_cdata(output, logs)
 
 
 def get_about_text(docs_url, issues_url):
     """
     Construct a short "About" paragraph containing docs and/or issues URL.
-    
+
     :param docs_url: str, URL for docs
     :param issues_url: str, URL for issues
     :return: str, "about" text
@@ -137,7 +141,7 @@ def get_test_logs(url):
 
 def has_testcases(xml):
     """Check if given TestingFarm XUnit has at least one testcase.
-    
+
     :param xml: xml, TF XUnit XML
     :return: bool, True if there is at least one testcase, False otherwise
     """
@@ -149,12 +153,12 @@ def has_testcases(xml):
 
 def main(args):
     """Convert TestingFarm XUnit into the standard JUnit.
-    
+
     The results will be printed to the stdout.
 
     :param args: parsed args
     :return: None
-    """    
+    """
     tf_xunit = load_tf_xunit(args.xunit_input[0])
     input_xml = objectify.fromstring(tf_xunit)
 
