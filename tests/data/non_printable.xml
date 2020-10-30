@@ -1,0 +1,33 @@
+<testsuites overall-result=\"failed\">
+<properties/>
+    <testsuite overall-result=\"failed\" tests=\"1\">
+        <properties>
+            <property name=\"baseosci.overall-result\" value=\"FAILED\"/>
+        </properties>
+        <testcase name=\"/Regression/bz1715423-tcpdump-pre-creates-user-and-groups\" result=\"failed\">
+            <properties>
+                <property name=\"baseosci.arch\" value=\"x86_64\"/>
+                <property name=\"baseosci.connectable_host\" value=\"172.31.31.0\"/>
+                <property name=\"baseosci.distro\" value=\"Fedora-Rawhide\"/>
+                <property name=\"baseosci.status\" value=\"Complete\"/>
+                <property name=\"baseosci.testcase.source.url\" value=\"\"/>
+                <property name=\"baseosci.variant\" value=\"\"/>
+            </properties>
+            <logs>
+                <log href=\"http://artifacts.dev.testing-farm.io/aa19e9af-213b-4031-9cdf-e83b3bcfbb9d/work-test1JAOV_/ci/test/execute/logs/Regression/bz1715423-tcpdump-pre-creates-user-and-groups\" name=\"log_dir\"/>
+                <log href=\"http://artifacts.dev.testing-farm.io/aa19e9af-213b-4031-9cdf-e83b3bcfbb9d/work-test1JAOV_/ci/test/execute/logs/Regression/bz1715423-tcpdump-pre-creates-user-and-groups/out.log\" name=\"testout.log\"/>
+            </logs>
+            <failure/>
+            <testing-environment name=\"requested\">
+                <property name=\"arch\" value=\"x86_64\"/>
+                <property name=\"compose\" value=\"Fedora-Rawhide\"/>
+                <property name=\"snapshots\" value=\"False\"/>
+            </testing-environment>
+            <testing-environment name=\"provisioned\">
+                <property name=\"arch\" value=\"x86_64\"/>
+                <property name=\"compose\" value=\"Fedora-Rawhide\"/>
+                <property name=\"snapshots\" value=\"False\"/>
+            </testing-environment>
+        </testcase>
+    </testsuite>
+</testsuites>

@@ -6,11 +6,24 @@
 import argparse
 import sys
 import time
+import unicodedata
+import re
+import itertools
 
 from lxml import etree
 from lxml import objectify
 
 import requests
+
+
+# build regular expression to find unicode control (non-printable) characters in a string (minus CR-LF)
+control_chars = ''.join([chr(x) for x in itertools.chain(range(0x00,0x20), range(0x7f,0xa0)) if x not in [0x0d, 0x0a]])
+control_char_re = re.compile('[%s]' % re.escape(control_chars))
+
+
+def remove_control_chars(s):
+    """Remove non-printable control characters from a string."""
+    return control_char_re.sub('', s)
 
 
 def to_cdata(output, text):
@@ -25,10 +38,8 @@ def to_cdata(output, text):
         cdata = '{output}'.format(output=text)
     else:
         cdata = '{output}'.format(output=text.decode())
-    try:
-        output.text = cdata
-    except ValueError:
-        output.text = repr(cdata)
+
+    output.text = remove_control_chars(cdata)
 
 
 def add_success(xml, test_name, logs, classname='tests', docs_url=None, issues_url=None):
