@@ -1,11 +1,12 @@
-FROM openshift/jenkins-slave-base-centos7:v3.11
+FROM registry.centos.org/centos/centos:8
 LABEL maintainer "Fedora CI"
-LABEL description="Jenkins JNLP agent for the Fedora CI Jenkins Pipeline Library"
+LABEL description="Jenkins Agent for the Fedora CI Jenkins Pipeline Library"
 
-ENV TOOLS_DIR=/tools/
+ENV SCRIPTS_DIR=/usr/local/libexec/ci-scripts
+ENV WORKSPACE_DIR=/workspace
 
-RUN mkdir -p ${TOOLS_DIR} &&\
-    chmod 777 ${TOOLS_DIR}
+RUN mkdir -p ${SCRIPTS_DIR} &&\
+    chmod 777 ${SCRIPTS_DIR}
 
 RUN yum -y install epel-release
 
@@ -19,8 +20,12 @@ RUN yum -y install \
     && yum clean all
 
 ADD requirements.txt /tmp/
-ADD tfxunit2junit.py ${TOOLS_DIR}
-
 RUN pip3 install -r /tmp/requirements.txt
 
-RUN ln -s ${TOOLS_DIR}/tfxunit2junit.py /usr/bin/tfxunit2junit
+ADD scripts/tfxunit2junit.py ${SCRIPTS_DIR}
+ADD scripts/pullRequest2scratchBuild.sh ${SCRIPTS_DIR}
+
+RUN ln -s ${SCRIPTS_DIR}/tfxunit2junit.py /usr/local/bin/tfxunit2junit
+RUN ln -s ${SCRIPTS_DIR}/pullRequest2scratchBuild.sh /usr/local/bin/pullRequest2scratchBuild.sh
+
+WORKDIR ${WORKSPACE_DIR}

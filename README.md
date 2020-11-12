@@ -4,7 +4,7 @@ This Jenkins agent image contains tools and utilities needed by the Fedora CI Je
 
 ## Tools
 
-### /usr/bin/tfxunit2junit
+### /usr/local/bin/tfxunit2junit
 
 This is a simple script which converts TestingFarm XUnit files to the standard JUnit format.
 
@@ -12,6 +12,17 @@ Example usage:
 
 ```shell
 tfxunit2junit testing_farm_xunit.xml > junit.xml
+```
+
+### /usr/local/bin/pullRequest2scratchBuild.sh
+
+This is a simple script which creates a SRPM from a pull request, and then it submits it as scratch-build to Koji. The SRPM has a special name which can be later decoded and mapped back to the original pull request. See the script for more information.
+
+Example usage:
+
+```shell
+# TODO: maybe use params instead of relying on environment variables
+pullRequest2scratchBuild.sh
 ```
 
 ## Development
