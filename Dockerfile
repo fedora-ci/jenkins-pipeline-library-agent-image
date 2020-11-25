@@ -1,23 +1,20 @@
-FROM registry.centos.org/centos/centos:8
+FROM registry.fedoraproject.org/fedora:33
 LABEL maintainer "Fedora CI"
 LABEL description="Jenkins Agent for the Fedora CI Jenkins Pipeline Library"
 
 ENV SCRIPTS_DIR=/usr/local/libexec/ci-scripts
 ENV WORKSPACE_DIR=/workspace
 
-RUN mkdir -p ${SCRIPTS_DIR} &&\
-    chmod 777 ${SCRIPTS_DIR}
+RUN mkdir -p ${SCRIPTS_DIR} ${WORKSPACE_DIR} && \
+    chmod 777 ${SCRIPTS_DIR} ${WORKSPACE_DIR}
 
-RUN yum -y install epel-release
-
-RUN yum -y install \
+RUN dnf -y install \
     koji \
     python3-pip \
     fedpkg \
-    python2-docutils \
     git \
     rpm-build \
-    && yum clean all
+    && dnf clean all
 
 ADD requirements.txt /tmp/
 RUN pip3 install -r /tmp/requirements.txt
