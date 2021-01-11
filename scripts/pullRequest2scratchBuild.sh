@@ -25,6 +25,7 @@
 # SOURCE_REPO_FULL_NAME - full name of the source repository; for example: "forks/user/rpms/repo"
 # KOJI_KEYTAB - path to the keytab that can be used to build SRPMs in Koji
 # KRB_PRINCIPAL - kerberos principal
+# KOJI_OPTS - extra options to pass to the "koji scratch-build" command
 
 
 fedpkg_bin=${FEDPKG_BIN:-/usr/bin/fedpkg}
@@ -68,4 +69,4 @@ mv ${srpm_name} ${new_srpm_name}
 
 # Scratch-build the SRPM in Koji
 kinit -k -t ${KOJI_KEYTAB} ${KRB_PRINCIPAL}
-${fedpkg_bin} scratch-build --nowait --target ${RELEASE_ID} --srpm ${new_srpm_name}
+${fedpkg_bin} scratch-build ${KOJI_OPTS} --target ${RELEASE_ID} --srpm ${new_srpm_name}
