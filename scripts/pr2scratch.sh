@@ -8,7 +8,7 @@
 # ARCH_OVERRIDE - only build for specified architectures (example: "x86_64,i686")
 
 
-if [ $# -ne 3 ]; then
+if [ $# -ne 4 ]; then
     echo "Usage: $0 <koji|brew> <wait|nowait> <target> <scm url>"
     exit 101
 fi
