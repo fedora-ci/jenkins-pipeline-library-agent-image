@@ -27,13 +27,20 @@
 # KRB_PRINCIPAL - kerberos principal
 # FEDPKG_OPTS - extra options to pass to the "fedpkg scratch-build" command
 
-
+workdir=${PWD}
 fedpkg_bin=${FEDPKG_BIN:-/usr/bin/fedpkg}
 pagure_url=${PAGURE_URL:-https://src.fedoraproject.org}
+
+srpm_log=${workdir}/srpm.log
+fedpkg_log=${workdir}/fedpkg.log
+koji_url=${workdir}/koji_url
 
 set -e
 set -x
 
+rm -f ${srpm_log}
+rm -f ${fedpkg_log}
+rm -f ${koji_url}
 
 function cleanup() {
     # Remove directory, if it exists already
@@ -62,11 +69,19 @@ prepare_repository ${REPO_FULL_NAME} ${PR_ID}
 cd ${REPO_NAME}
 
 # Build SRPM
-srpm_path=$(fedpkg --release ${RELEASE_ID} srpm | grep 'Wrote:' | awk '{ print $2 }')
+fedpkg --release ${RELEASE_ID} srpm > ${srpm_log}
+srpm_path=$(cat ${srpm_log} | grep 'Wrote:' | awk '{ print $2 }')
 srpm_name=$(basename ${srpm_path})
 new_srpm_name="fedora-ci_${PR_UID}_${PR_COMMIT}_${PR_COMMENT};${SOURCE_REPO_FULL_NAME//\//:}.${RELEASE_ID}.src.rpm"
 mv ${srpm_name} ${new_srpm_name}
 
 # Scratch-build the SRPM in Koji
-kinit -k -t ${KOJI_KEYTAB} ${KRB_PRINCIPAL}
-${fedpkg_bin} scratch-build ${FEDPKG_OPTS} --target ${RELEASE_ID} --srpm ${new_srpm_name}
+# kinit -k -t ${KOJI_KEYTAB} ${KRB_PRINCIPAL}
+
+${fedpkg_bin} scratch-build --nowait ${FEDPKG_OPTS} --target ${RELEASE_ID} --srpm ${new_srpm_name} > ${fedpkg_log}
+
+cat ${fedpkg_log} | grep '^Task info: ' | awk '{ print $3 }' > ${koji_url}
+
+task_id=$(cat ${fedpkg_log} | grep '^Created task: ' | awk '{ print $3 }')
+
+koji watch-task ${task_id}
