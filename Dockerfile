@@ -1,4 +1,4 @@
-FROM registry.fedoraproject.org/fedora:33
+FROM registry.fedoraproject.org/fedora:34
 LABEL maintainer "Fedora CI"
 LABEL description="Jenkins Agent for the Fedora CI Jenkins Pipeline Library"
 
