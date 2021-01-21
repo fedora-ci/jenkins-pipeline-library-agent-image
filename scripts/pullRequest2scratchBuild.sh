@@ -70,15 +70,17 @@ cd ${REPO_NAME}
 
 # Build SRPM
 fedpkg --release ${RELEASE_ID} srpm > ${srpm_log}
+cat ${srpm_log}
 srpm_path=$(cat ${srpm_log} | grep 'Wrote:' | awk '{ print $2 }')
 srpm_name=$(basename ${srpm_path})
 new_srpm_name="fedora-ci_${PR_UID}_${PR_COMMIT}_${PR_COMMENT};${SOURCE_REPO_FULL_NAME//\//:}.${RELEASE_ID}.src.rpm"
 mv ${srpm_name} ${new_srpm_name}
 
 # Scratch-build the SRPM in Koji
-# kinit -k -t ${KOJI_KEYTAB} ${KRB_PRINCIPAL}
+kinit -k -t ${KOJI_KEYTAB} ${KRB_PRINCIPAL}
 
 ${fedpkg_bin} scratch-build --nowait ${FEDPKG_OPTS} --target ${RELEASE_ID} --srpm ${new_srpm_name} > ${fedpkg_log}
+cat ${fedpkg_log}
 
 cat ${fedpkg_log} | grep '^Task info: ' | awk '{ print $3 }' > ${koji_url}
 
