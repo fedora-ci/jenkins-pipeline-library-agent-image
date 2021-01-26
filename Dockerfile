@@ -23,7 +23,7 @@ RUN pip3 install -r /tmp/requirements.txt
 
 ADD scripts/tfxunit2junit.py ${SCRIPTS_DIR}
 ADD scripts/pullRequest2scratchBuild.sh ${SCRIPTS_DIR}
-ADD scripts/pr2scratch.sh ${SCRIPTS_DIR}
+ADD scripts/scratch.sh ${SCRIPTS_DIR}
 
 RUN ln -s ${SCRIPTS_DIR}/tfxunit2junit.py /usr/local/bin/tfxunit2junit
 RUN ln -s ${SCRIPTS_DIR}/pullRequest2scratchBuild.sh /usr/local/bin/pullRequest2scratchBuild.sh
