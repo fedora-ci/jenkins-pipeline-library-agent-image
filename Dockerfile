@@ -27,6 +27,6 @@ ADD scripts/pr2scratch.sh ${SCRIPTS_DIR}
 
 RUN ln -s ${SCRIPTS_DIR}/tfxunit2junit.py /usr/local/bin/tfxunit2junit
 RUN ln -s ${SCRIPTS_DIR}/pullRequest2scratchBuild.sh /usr/local/bin/pullRequest2scratchBuild.sh
-RUN ln -s ${SCRIPTS_DIR}/pr2scratch.sh /usr/local/bin/pr2scratch.sh
+RUN ln -s ${SCRIPTS_DIR}/scratch.sh /usr/local/bin/scratch.sh
 
 WORKDIR ${WORKSPACE_DIR}
