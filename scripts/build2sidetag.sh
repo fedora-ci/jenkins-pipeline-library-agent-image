@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Scratch-build pull requests in Koji.
+# Create a side-tag and tag the given build into it.
 
 # Required environment variables:
 # KOJI_KEYTAB - path to the keytab that can be used to build packages in Koji
