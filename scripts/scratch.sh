@@ -7,6 +7,7 @@
 # KRB_PRINCIPAL - kerberos principal
 # ARCH_OVERRIDE - only build for specified architectures (example: "x86_64,i686")
 
+workdir=${PWD}
 
 if [ $# -ne 3 ]; then
     echo "Usage: $0 <koji|brew> <target> <scm url>"
