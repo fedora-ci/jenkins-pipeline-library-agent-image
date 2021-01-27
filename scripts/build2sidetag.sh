@@ -14,7 +14,7 @@ if [ $# -ne 2 ]; then
 fi
 
 request_log=${workdir}/request.log
-sidetag_name=${workdir}/sidetag_name
+sidetag_name_file=${workdir}/sidetag_name
 
 set -e
 set -x
@@ -42,6 +42,6 @@ cat ${request_log}
 
 sidetag_name=$(cat ${request_log} | grep ' created.$' | awk -F\' '{ print $2 }')
 
-echo ${sidetag_name} > ${sidetag_name}
+echo ${sidetag_name} > ${sidetag_name_file}
 
 koji tag ${sidetag_name} ${nvr}
