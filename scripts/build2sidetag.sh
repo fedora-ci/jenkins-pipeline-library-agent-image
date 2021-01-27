@@ -40,7 +40,7 @@ kinit -k -t ${KOJI_KEYTAB} ${KRB_PRINCIPAL}
 fedpkg request-side-tag --base-tag ${base_tag} > ${request_log}
 cat ${request_log}
 
-sidetag_name=$(cat ${request_log} | grep ') created.$' | awk -F\' '{ print $2 }'
+sidetag_name=$(cat ${request_log} | grep ' created.$' | awk -F\' '{ print $2 }'
 
 echo ${sidetag_name} > ${sidetag_name}
 
