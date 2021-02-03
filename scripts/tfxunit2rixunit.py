@@ -67,7 +67,7 @@ def main(args):
                 xunit = get_test_logs(xunit_url)
                 break
 
-    print(xunit)
+    print(xunit.decode())
 
 
 def parse_args():
