@@ -25,10 +25,12 @@ ADD scripts/tfxunit2junit.py ${SCRIPTS_DIR}
 ADD scripts/pullRequest2scratchBuild.sh ${SCRIPTS_DIR}
 ADD scripts/scratch.sh ${SCRIPTS_DIR}
 ADD scripts/build2sidetag.sh ${SCRIPTS_DIR}
+ADD scripts/tfxunit2rixunit.py ${SCRIPTS_DIR}
 
 RUN ln -s ${SCRIPTS_DIR}/tfxunit2junit.py /usr/local/bin/tfxunit2junit
 RUN ln -s ${SCRIPTS_DIR}/pullRequest2scratchBuild.sh /usr/local/bin/pullRequest2scratchBuild.sh
 RUN ln -s ${SCRIPTS_DIR}/scratch.sh /usr/local/bin/scratch.sh
 RUN ln -s ${SCRIPTS_DIR}/build2sidetag.sh /usr/local/bin/build2sidetag.sh
+RUN ln -s ${SCRIPTS_DIR}/tfxunit2rixunit.py /usr/local/bin/tfxunit2rixunit
 
 WORKDIR ${WORKSPACE_DIR}
