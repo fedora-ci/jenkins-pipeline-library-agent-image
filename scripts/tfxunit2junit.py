@@ -202,15 +202,15 @@ def main(args):
 
             tests += 1
 
-            if result in ('passed', 'pass'):
+            if result in ('passed', 'pass', 'pass:'):
                 add_success(output_xml, test_name, logs, docs_url=args.docs_url, issues_url=args.issues_url)
-            elif result in ('failed', 'fail'):
+            elif result in ('failed', 'fail', 'fail:'):
                 add_failure(output_xml, test_name, logs, docs_url=args.docs_url, issues_url=args.issues_url)
                 failures += 1
-            elif result in ('error', 'errored'):
+            elif result in ('error', 'errored', 'error:'):
                 add_error(output_xml, test_name, logs, issues_url=args.issues_url)
                 errors += 1
-            elif result in ('skipped', 'skip'):
+            elif result in ('skipped', 'skip', 'skip:'):
                 add_skipped(output_xml, test_name, logs, docs_url=args.docs_url, issues_url=args.issues_url)
                 skipped += 1
 
