@@ -189,7 +189,7 @@ def main(args):
         # TODO: can there be more test suites in a single xunit file?
         for testcase in input_xml.testsuite[0].testcase:
             for log in testcase.logs.log:
-                if log.attrib['name'].endswith('.log'):
+                if log.attrib['name'].endswith('.log') or log.attrib['name'].endswith('output.txt'):
                     logs = get_test_logs(log.attrib['href'])
                     if not logs:
                         logs = '(empty output)'
