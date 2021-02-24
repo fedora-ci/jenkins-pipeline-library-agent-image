@@ -178,6 +178,8 @@ def main(args):
     errors = 0
     skipped = 0
 
+    root_output_xml = etree.Element('testsuites')
+
     output_xml = etree.Element('testsuite')
 
     if not has_testcases(input_xml):
@@ -186,41 +188,42 @@ def main(args):
         add_error(output_xml, 'infrastructure', 'No tests were run.', issues_url=args.issues_url)
         errors += 1
     else:
-        # TODO: can there be more test suites in a single xunit file?
-        for testcase in input_xml.testsuite[0].testcase:
-            for log in testcase.logs.log:
-                if log.attrib['name'].endswith('.log') or log.attrib['name'].endswith('output.txt'):
-                    logs = get_test_logs(log.attrib['href'])
-                    if not logs:
-                        logs = '(empty output)'
-                    break
-                elif log.attrib['name'] == 'log_dir':
-                    logs = 'Logs: {logs_url}'.format(logs_url=log.attrib['href'])
+        for testsuite in input_xml.testsuite:
+            output_xml = etree.SubElement(root_output_xml, 'testsuite')
+            for testcase in testsuite.testcase:
+                for log in testcase.logs.log:
+                    if log.attrib['name'].endswith('.log') or log.attrib['name'].endswith('output.txt'):
+                        logs = get_test_logs(log.attrib['href'])
+                        if not logs:
+                            logs = '(empty output)'
+                        break
+                    elif log.attrib['name'] == 'log_dir':
+                        logs = 'Logs: {logs_url}'.format(logs_url=log.attrib['href'])
 
-            test_name = testcase.attrib['name']
-            result = testcase.attrib['result'].lower()
+                test_name = testcase.attrib['name']
+                result = testcase.attrib['result'].lower()
 
-            tests += 1
+                tests += 1
 
-            if result in ('passed', 'pass', 'pass:'):
-                add_success(output_xml, test_name, logs, docs_url=args.docs_url, issues_url=args.issues_url)
-            elif result in ('failed', 'fail', 'fail:'):
-                add_failure(output_xml, test_name, logs, docs_url=args.docs_url, issues_url=args.issues_url)
-                failures += 1
-            elif result in ('error', 'errored', 'error:'):
-                add_error(output_xml, test_name, logs, issues_url=args.issues_url)
-                errors += 1
-            elif result in ('skipped', 'skip', 'skip:'):
-                add_skipped(output_xml, test_name, logs, docs_url=args.docs_url, issues_url=args.issues_url)
-                skipped += 1
+                if result in ('passed', 'pass', 'pass:'):
+                    add_success(output_xml, test_name, logs, docs_url=args.docs_url, issues_url=args.issues_url)
+                elif result in ('failed', 'fail', 'fail:'):
+                    add_failure(output_xml, test_name, logs, docs_url=args.docs_url, issues_url=args.issues_url)
+                    failures += 1
+                elif result in ('error', 'errored', 'error:'):
+                    add_error(output_xml, test_name, logs, issues_url=args.issues_url)
+                    errors += 1
+                elif result in ('skipped', 'skip', 'skip:'):
+                    add_skipped(output_xml, test_name, logs, docs_url=args.docs_url, issues_url=args.issues_url)
+                    skipped += 1
 
-    output_xml.attrib['tests'] = str(tests)
-    output_xml.attrib['failures'] = str(failures)
-    output_xml.attrib['errors'] = str(errors)
-    output_xml.attrib['skipped'] = str(skipped)
+            output_xml.attrib['tests'] = str(tests)
+            output_xml.attrib['failures'] = str(failures)
+            output_xml.attrib['errors'] = str(errors)
+            output_xml.attrib['skipped'] = str(skipped)
 
-    objectify.deannotate(output_xml, cleanup_namespaces=True, xsi_nil=True)
-    print(etree.tostring(output_xml, pretty_print=True).decode())
+    objectify.deannotate(root_output_xml, cleanup_namespaces=True, xsi_nil=True)
+    print(etree.tostring(root_output_xml, pretty_print=True).decode())
 
 
 def parse_args():
