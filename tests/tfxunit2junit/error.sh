@@ -5,7 +5,7 @@
 # Meh, nginx cannot work with relative paths, so use a known /tmp location for hosting the test data
 # Note that this is hardcoded in nginx/nginx.conf
 tmp_webroot=/tmp/xunit-data-webroot
-tfxunit2junit=../../../scripts/tfxunit2junit.py
+tfxunit2junit="python3 ../../scripts/tfxunit2junit.py"
 
 assert_test() {
     rlRun "$tfxunit2junit results/$1.xml | tee $output"
@@ -16,7 +16,7 @@ rlJournalStart
     rlPhaseStartSetup
         rlRun "set -o pipefail"
         rlRun "cp -rf webroot $tmp_webroot"
-        rlRun "(cd $tmp_webroot && tar xf *.tgz)"
+        rlRun "(cd $tmp_webroot && ls *.tgz | xargs -n1 tar xf)"
         rlRun "nginx -c $(pwd)/nginx/nginx.conf"
         rlRun "curl localhost:9876"
         rlRun "output=$(mktemp)"

@@ -1,3 +1,10 @@
 descripton: Test error cases
 test: ./error.sh
 framework: beakerlib
+require:
+  - nginx
+  - procps-ng
+  - python-lxml
+  - python-requests
+  - findutils
+duration: 10m
