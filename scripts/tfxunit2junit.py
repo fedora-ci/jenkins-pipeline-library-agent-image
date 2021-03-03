@@ -361,7 +361,6 @@ def main(args):
 
         output_xml = parse_testcases(testsuite, output_xml)
 
-        # not testcases added, this is a real infra error :(
         if not has_testcases(output_xml):
             # likely an infra error; no tests were run so there is nothing to show
             # let's fabricate at least this dummy "infrastructure" test so we can show URLs to docs and issue tracker
