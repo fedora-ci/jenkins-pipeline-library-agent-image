@@ -1,0 +1,20 @@
+<testsuites>
+  <testsuite name="testsuite 0" failures="1">
+    <testcase classname="environment preparation" name="package installation">
+      <failure message="Failed to install tested packages.&#10;&#10;Found a bug? Please open an issue in the issue tracker: https://pagure.io/fedora-ci/general/issues&#10;&#10;"/>
+      <system-out>Stage: 0-step.txt
+
+I tried to install something :(
+</system-out>
+      <system-out>Stage: 1-step.txt
+
+I tried to install something again :(
+</system-out>
+      <system-out>Stage: 2-step.txt
+
+nah, going for a beer
+</system-out>
+    </testcase>
+  </testsuite>
+</testsuites>
+

@@ -45,3 +45,13 @@ Pushing to the master branch will automatically trigger a new container image bu
 The resulting image will have the following name: `quay.io/fedoraci/pipeline-library-agent:prototype`
 
 > **_NOTE:_** We use "prototype" tag now so we can iterate and test changes faster. However, in future, the prototype tag will be replaced with a short commit hash.
+
+## Tests
+
+### tfxunit2junit
+
+To run the test use the [tmt](https://tmt.readthedocs.io/) tool.
+
+```shell
+$ tmt run
+```

@@ -1,0 +1,14 @@
+<testsuites overall-result="error">
+ <properties>
+  <property name="baseosci.overall-result" value="error"/>
+ </properties>
+ <testsuite result="undefined" tests="0">
+  <logs>
+      <log guest-setup-stage="artifact_installation" href="http://localhost:9876/841004ab-22c1-401d-a271-057bef6472bb/artifact_installation" name="build installation" schedule-stage="guest-setup"/>
+      <log guest-setup-stage="pre_artifact_installation" href="http://localhost:9876/841004ab-22c1-401d-a271-057bef6472bb/guest-setup-output-pre-artifact-installation.txt" name="guest setup" schedule-stage="guest-setup"/>
+  </logs>
+  <properties>
+   <property name="baseosci.result" value="undefined"/>
+  </properties>
+ </testsuite>
+</testsuites>

@@ -1,0 +1,3 @@
+descripton: Test error cases
+test: ./error.sh
+framework: beakerlib

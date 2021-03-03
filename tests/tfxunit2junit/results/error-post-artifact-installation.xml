@@ -1,0 +1,166 @@
+<testsuites overall-result="error">
+ <properties>
+  <property name="baseosci.overall-result" value="error"/>
+ </properties>
+ <testsuite result="error" tests="0">
+  <logs>
+   <log guest-setup-stage="artifact_installation" href="http://localhost:9876/05d6e908-ab92-4ea2-a115-abd05d6b9711/guest-setup-bd5c3ef8-6fc2-4752-af88-2ef099148c39/artifact-installation-bd5c3ef8-6fc2-4752-af88-2ef099148c39" name="Copr build installation" schedule-stage="guest-setup"/>
+   <log guest-setup-stage="pre_artifact_installation" href="http://localhost:9876/05d6e908-ab92-4ea2-a115-abd05d6b9711/guest-setup-bd5c3ef8-6fc2-4752-af88-2ef099148c39/guest-setup-output-pre-artifact-installation.txt" name="guest setup" schedule-stage="guest-setup"/>
+   <log guest-setup-stage="post_artifact_installation" href="http://localhost:9876/05d6e908-ab92-4ea2-a115-abd05d6b9711/guest-setup-bd5c3ef8-6fc2-4752-af88-2ef099148c39/guest-setup-output-post-artifact-installation.txt" name="guest setup" schedule-stage="guest-setup"/>
+  </logs>
+  <properties>
+   <property name="baseosci.result" value="error"/>
+  </properties>
+ </testsuite>
+ <testsuite result="undefined" tests="0">
+  <logs>
+   <log guest-setup-stage="artifact_installation" href="http://localhost:9876/05d6e908-ab92-4ea2-a115-abd05d6b9711/guest-setup-1dcd61da-9c2a-4129-b571-c42c7a0cb4a8/artifact-installation-1dcd61da-9c2a-4129-b571-c42c7a0cb4a8" name="Copr build installation" schedule-stage="guest-setup"/>
+   <log guest-setup-stage="pre_artifact_installation" href="http://localhost:9876/05d6e908-ab92-4ea2-a115-abd05d6b9711/guest-setup-1dcd61da-9c2a-4129-b571-c42c7a0cb4a8/guest-setup-output-pre-artifact-installation.txt" name="guest setup" schedule-stage="guest-setup"/>
+  </logs>
+  <properties>
+   <property name="baseosci.result" value="undefined"/>
+  </properties>
+ </testsuite>
+ <testsuite result="error" tests="0">
+  <logs>
+   <log guest-setup-stage="artifact_installation" href="http://localhost:9876/05d6e908-ab92-4ea2-a115-abd05d6b9711/guest-setup-7e45f017-30b3-4856-bc32-575132c5a8d6/artifact-installation-7e45f017-30b3-4856-bc32-575132c5a8d6" name="Copr build installation" schedule-stage="guest-setup"/>
+   <log guest-setup-stage="pre_artifact_installation" href="http://localhost:9876/05d6e908-ab92-4ea2-a115-abd05d6b9711/guest-setup-7e45f017-30b3-4856-bc32-575132c5a8d6/guest-setup-output-pre-artifact-installation.txt" name="guest setup" schedule-stage="guest-setup"/>
+   <log guest-setup-stage="post_artifact_installation" href="http://localhost:9876/05d6e908-ab92-4ea2-a115-abd05d6b9711/guest-setup-7e45f017-30b3-4856-bc32-575132c5a8d6/guest-setup-output-post-artifact-installation.txt" name="guest setup" schedule-stage="guest-setup"/>
+  </logs>
+  <properties>
+   <property name="baseosci.result" value="error"/>
+  </properties>
+ </testsuite>
+ <testsuite result="error" tests="0">
+  <logs>
+   <log guest-setup-stage="artifact_installation" href="http://localhost:9876/05d6e908-ab92-4ea2-a115-abd05d6b9711/guest-setup-2543c4cc-b7df-4215-990b-53f0beb02311/artifact-installation-2543c4cc-b7df-4215-990b-53f0beb02311" name="Copr build installation" schedule-stage="guest-setup"/>
+   <log guest-setup-stage="pre_artifact_installation" href="http://localhost:9876/05d6e908-ab92-4ea2-a115-abd05d6b9711/guest-setup-2543c4cc-b7df-4215-990b-53f0beb02311/guest-setup-output-pre-artifact-installation.txt" name="guest setup" schedule-stage="guest-setup"/>
+   <log guest-setup-stage="post_artifact_installation" href="http://localhost:9876/05d6e908-ab92-4ea2-a115-abd05d6b9711/guest-setup-2543c4cc-b7df-4215-990b-53f0beb02311/guest-setup-output-post-artifact-installation.txt" name="guest setup" schedule-stage="guest-setup"/>
+  </logs>
+  <properties>
+   <property name="baseosci.result" value="error"/>
+  </properties>
+ </testsuite>
+ <testsuite result="passed" tests="3">
+  <logs>
+   <log guest-setup-stage="artifact_installation" href="http://localhost:9876/05d6e908-ab92-4ea2-a115-abd05d6b9711/guest-setup-203c65fc-5021-4772-b711-04def585fb5c/artifact-installation-203c65fc-5021-4772-b711-04def585fb5c" name="Copr build installation" schedule-stage="guest-setup"/>
+   <log guest-setup-stage="pre_artifact_installation" href="http://localhost:9876/05d6e908-ab92-4ea2-a115-abd05d6b9711/guest-setup-203c65fc-5021-4772-b711-04def585fb5c/guest-setup-output-pre-artifact-installation.txt" name="guest setup" schedule-stage="guest-setup"/>
+   <log guest-setup-stage="post_artifact_installation" href="http://localhost:9876/05d6e908-ab92-4ea2-a115-abd05d6b9711/guest-setup-203c65fc-5021-4772-b711-04def585fb5c/guest-setup-output-post-artifact-installation.txt" name="guest setup" schedule-stage="guest-setup"/>
+  </logs>
+  <properties>
+   <property name="baseosci.result" value="passed"/>
+  </properties>
+  <testcase name="/script-00" result="passed">
+   <properties>
+    <property name="baseosci.arch" value="x86_64"/>
+    <property name="baseosci.connectable_host" value="172.31.21.182"/>
+    <property name="baseosci.distro" value="Fedora-34"/>
+    <property name="baseosci.status" value="Complete"/>
+    <property name="baseosci.testcase.source.url" value=""/>
+    <property name="baseosci.variant" value=""/>
+   </properties>
+   <logs>
+    <log href="http://localhost:9876/05d6e908-ab92-4ea2-a115-abd05d6b9711/work-pipIZlmcT/plans/install/pip/execute/data/script-00" name="log_dir"/>
+    <log href="http://localhost:9876/05d6e908-ab92-4ea2-a115-abd05d6b9711/work-pipIZlmcT/plans/install/pip/execute/data/script-00/output.txt" name="testout.log"/>
+   </logs>
+   <testing-environment name="requested">
+    <property name="arch" value="x86_64"/>
+    <property name="compose" value="Fedora-34"/>
+    <property name="snapshots" value="False"/>
+   </testing-environment>
+   <testing-environment name="provisioned">
+    <property name="arch" value="x86_64"/>
+    <property name="compose" value="Fedora-34"/>
+    <property name="snapshots" value="False"/>
+   </testing-environment>
+  </testcase>
+  <testcase name="/script-01" result="passed">
+   <properties>
+    <property name="baseosci.arch" value="x86_64"/>
+    <property name="baseosci.connectable_host" value="172.31.21.182"/>
+    <property name="baseosci.distro" value="Fedora-34"/>
+    <property name="baseosci.status" value="Complete"/>
+    <property name="baseosci.testcase.source.url" value=""/>
+    <property name="baseosci.variant" value=""/>
+   </properties>
+   <logs>
+    <log href="http://localhost:9876/05d6e908-ab92-4ea2-a115-abd05d6b9711/work-pipIZlmcT/plans/install/pip/execute/data/script-01" name="log_dir"/>
+    <log href="http://localhost:9876/05d6e908-ab92-4ea2-a115-abd05d6b9711/work-pipIZlmcT/plans/install/pip/execute/data/script-01/output.txt" name="testout.log"/>
+   </logs>
+   <testing-environment name="requested">
+    <property name="arch" value="x86_64"/>
+    <property name="compose" value="Fedora-34"/>
+    <property name="snapshots" value="False"/>
+   </testing-environment>
+   <testing-environment name="provisioned">
+    <property name="arch" value="x86_64"/>
+    <property name="compose" value="Fedora-34"/>
+    <property name="snapshots" value="False"/>
+   </testing-environment>
+  </testcase>
+  <testcase name="/script-02" result="passed">
+   <properties>
+    <property name="baseosci.arch" value="x86_64"/>
+    <property name="baseosci.connectable_host" value="172.31.21.182"/>
+    <property name="baseosci.distro" value="Fedora-34"/>
+    <property name="baseosci.status" value="Complete"/>
+    <property name="baseosci.testcase.source.url" value=""/>
+    <property name="baseosci.variant" value=""/>
+   </properties>
+   <logs>
+    <log href="http://localhost:9876/05d6e908-ab92-4ea2-a115-abd05d6b9711/work-pipIZlmcT/plans/install/pip/execute/data/script-02" name="log_dir"/>
+    <log href="http://localhost:9876/05d6e908-ab92-4ea2-a115-abd05d6b9711/work-pipIZlmcT/plans/install/pip/execute/data/script-02/output.txt" name="testout.log"/>
+   </logs>
+   <testing-environment name="requested">
+    <property name="arch" value="x86_64"/>
+    <property name="compose" value="Fedora-34"/>
+    <property name="snapshots" value="False"/>
+   </testing-environment>
+   <testing-environment name="provisioned">
+    <property name="arch" value="x86_64"/>
+    <property name="compose" value="Fedora-34"/>
+    <property name="snapshots" value="False"/>
+   </testing-environment>
+  </testcase>
+ </testsuite>
+ <testsuite result="error" tests="0">
+  <logs>
+   <log guest-setup-stage="artifact_installation" href="http://localhost:9876/05d6e908-ab92-4ea2-a115-abd05d6b9711/guest-setup-75842492-9974-4579-9344-53ad0a7ee814/artifact-installation-75842492-9974-4579-9344-53ad0a7ee814" name="Copr build installation" schedule-stage="guest-setup"/>
+   <log guest-setup-stage="pre_artifact_installation" href="http://localhost:9876/05d6e908-ab92-4ea2-a115-abd05d6b9711/guest-setup-75842492-9974-4579-9344-53ad0a7ee814/guest-setup-output-pre-artifact-installation.txt" name="guest setup" schedule-stage="guest-setup"/>
+   <log guest-setup-stage="post_artifact_installation" href="http://localhost:9876/05d6e908-ab92-4ea2-a115-abd05d6b9711/guest-setup-75842492-9974-4579-9344-53ad0a7ee814/guest-setup-output-post-artifact-installation.txt" name="guest setup" schedule-stage="guest-setup"/>
+  </logs>
+  <properties>
+   <property name="baseosci.result" value="error"/>
+  </properties>
+ </testsuite>
+ <testsuite result="error" tests="0">
+  <logs>
+   <log guest-setup-stage="artifact_installation" href="http://localhost:9876/05d6e908-ab92-4ea2-a115-abd05d6b9711/guest-setup-ca084ae7-d13e-4161-b356-ce8b8a632827/artifact-installation-ca084ae7-d13e-4161-b356-ce8b8a632827" name="Copr build installation" schedule-stage="guest-setup"/>
+   <log guest-setup-stage="pre_artifact_installation" href="http://localhost:9876/05d6e908-ab92-4ea2-a115-abd05d6b9711/guest-setup-ca084ae7-d13e-4161-b356-ce8b8a632827/guest-setup-output-pre-artifact-installation.txt" name="guest setup" schedule-stage="guest-setup"/>
+   <log guest-setup-stage="post_artifact_installation" href="http://localhost:9876/05d6e908-ab92-4ea2-a115-abd05d6b9711/guest-setup-ca084ae7-d13e-4161-b356-ce8b8a632827/guest-setup-output-post-artifact-installation.txt" name="guest setup" schedule-stage="guest-setup"/>
+  </logs>
+  <properties>
+   <property name="baseosci.result" value="error"/>
+  </properties>
+ </testsuite>
+ <testsuite result="error" tests="0">
+  <logs>
+   <log guest-setup-stage="artifact_installation" href="http://localhost:9876/05d6e908-ab92-4ea2-a115-abd05d6b9711/guest-setup-15fa5b26-73d6-41f4-81f8-593311c521b4/artifact-installation-15fa5b26-73d6-41f4-81f8-593311c521b4" name="Copr build installation" schedule-stage="guest-setup"/>
+   <log guest-setup-stage="pre_artifact_installation" href="http://localhost:9876/05d6e908-ab92-4ea2-a115-abd05d6b9711/guest-setup-15fa5b26-73d6-41f4-81f8-593311c521b4/guest-setup-output-pre-artifact-installation.txt" name="guest setup" schedule-stage="guest-setup"/>
+   <log guest-setup-stage="post_artifact_installation" href="http://localhost:9876/05d6e908-ab92-4ea2-a115-abd05d6b9711/guest-setup-15fa5b26-73d6-41f4-81f8-593311c521b4/guest-setup-output-post-artifact-installation.txt" name="guest setup" schedule-stage="guest-setup"/>
+  </logs>
+  <properties>
+   <property name="baseosci.result" value="error"/>
+  </properties>
+ </testsuite>
+ <testsuite result="error" tests="0">
+  <logs>
+   <log guest-setup-stage="artifact_installation" href="http://localhost:9876/05d6e908-ab92-4ea2-a115-abd05d6b9711/guest-setup-f90975c7-7441-42bd-af7c-27ab7da906c3/artifact-installation-f90975c7-7441-42bd-af7c-27ab7da906c3" name="Copr build installation" schedule-stage="guest-setup"/>
+   <log guest-setup-stage="pre_artifact_installation" href="http://localhost:9876/05d6e908-ab92-4ea2-a115-abd05d6b9711/guest-setup-f90975c7-7441-42bd-af7c-27ab7da906c3/guest-setup-output-pre-artifact-installation.txt" name="guest setup" schedule-stage="guest-setup"/>
+   <log guest-setup-stage="post_artifact_installation" href="http://localhost:9876/05d6e908-ab92-4ea2-a115-abd05d6b9711/guest-setup-f90975c7-7441-42bd-af7c-27ab7da906c3/guest-setup-output-post-artifact-installation.txt" name="guest setup" schedule-stage="guest-setup"/>
+  </logs>
+  <properties>
+   <property name="baseosci.result" value="error"/>
+  </properties>
+ </testsuite>
+</testsuites>
