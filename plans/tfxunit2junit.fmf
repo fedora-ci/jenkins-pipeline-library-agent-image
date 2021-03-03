@@ -1,0 +1,9 @@
+provision:
+    how: container
+    image: fedora:rawhide
+
+discover:
+    how: fmf
+
+execute:
+    how: tmt
