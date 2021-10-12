@@ -246,7 +246,7 @@ def parse_testcases(testsuite, xml):
 
         if result in ('passed', 'pass', 'pass:'):
             add_success(xml, test_name, logs, docs_url=args.docs_url, issues_url=args.issues_url)
-        elif result in ('failed', 'fail', 'fail:'):
+        elif result in ('failed', 'fail', 'fail:', 'needs_inspection'):
             add_failure(xml, test_name, logs, docs_url=args.docs_url, issues_url=args.issues_url)
             failures += 1
         elif result in ('error', 'errored', 'error:'):
