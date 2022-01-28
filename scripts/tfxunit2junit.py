@@ -276,6 +276,12 @@ def parse_package_installation(testsuite, xml):
     # go in reverse order of the stages, if a stage fails, it is the last one
     # if all went well, this is not interesting for the user :)
 
+    if not hasattr(testsuite, 'logs'):
+        return xml
+
+    if not hasattr(testsuite.logs, 'log'):
+        return xml
+
     if 'result' not in testsuite.attrib or testsuite.attrib['result'] != 'undefined':
         return xml
 
@@ -325,6 +331,11 @@ def parse_workdir(testsuite, xml):
     :param xml: XML document to extend
     :return: XML document extended with workdir link
     """
+    if not hasattr(testsuite, 'logs'):
+        return xml
+
+    if not hasattr(testsuite.logs, 'log'):
+        return xml
 
     for log in testsuite.logs.log:
         if 'name' in log.attrib and log.attrib['name'] == 'workdir':
@@ -341,6 +352,11 @@ def parse_reproducer(testsuite, xml):
     :param xml: XML document to extend
     :return: XML document extended with workdir link
     """
+    if not hasattr(testsuite, 'logs'):
+        return xml
+
+    if not hasattr(testsuite.logs, 'log'):
+        return xml
 
     for log in testsuite.logs.log:
         if 'name' in log.attrib and log.attrib['name'] == 'tmt-reproducer':
