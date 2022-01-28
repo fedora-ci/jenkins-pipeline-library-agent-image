@@ -54,8 +54,7 @@ def to_cdata(output, text):
 def add_success(xml, test_name, logs, classname='tests', docs_url=None, issues_url=None):
     """Add entry for a successful test."""
     testcase = etree.SubElement(xml, 'testcase', name=test_name, classname=classname)
-    output = etree.SubElement(testcase, 'system-out')
-    to_cdata(output, logs)
+    add_system_out(testcase, logs)
 
 
 def add_failure(xml, test_name, logs, classname='tests', docs_url=None, issues_url=None):
@@ -67,8 +66,12 @@ def add_failure(xml, test_name, logs, classname='tests', docs_url=None, issues_u
         type='FAIL',
         message='Test "{name}" failed.\n{about}'.format(name=test_name, about=get_about_text(docs_url, issues_url))
     )
-    output = etree.SubElement(testcase, 'system-out')
-    to_cdata(output, logs)
+    add_system_out(testcase, logs)
+
+
+def add_system_out(xml, log):
+    output = etree.SubElement(xml, 'system-out')
+    to_cdata(output, log)
 
 
 def add_package_installation_failure(xml, test_name, logs, classname='environment preparation', docs_url=None, issues_url=None):
@@ -81,8 +84,7 @@ def add_package_installation_failure(xml, test_name, logs, classname='environmen
     )
 
     for log in logs:
-        output = etree.SubElement(testcase, 'system-out')
-        to_cdata(output, log)
+        add_system_out(testcase, log)
 
 
 def add_error(xml, test_name, logs, message, classname='tests', docs_url=None, issues_url=None):
@@ -96,8 +98,7 @@ def add_error(xml, test_name, logs, message, classname='tests', docs_url=None, i
             message=message, about=get_about_text(docs_url, issues_url)
         )
     )
-    output = etree.SubElement(testcase, 'system-out')
-    to_cdata(output, logs)
+    add_system_out(testcase, logs)
 
 
 def add_skipped(xml, test_name, logs, classname='tests', docs_url=None, issues_url=None):
@@ -111,8 +112,7 @@ def add_skipped(xml, test_name, logs, classname='tests', docs_url=None, issues_u
             name=test_name, about=get_about_text(docs_url, issues_url)
         )
     )
-    output = etree.SubElement(testcase, 'system-out')
-    to_cdata(output, logs)
+    add_system_out(testcase, logs)
 
 
 def get_about_text(docs_url, issues_url):
@@ -157,7 +157,7 @@ def get_artifact_installation_logs(url):
     """
     retry_count = 10
     while retry_count:
-        response = requests.get(url)
+        response = requests.get(requests.utils.requote_uri(url))
         if response.status_code in (404, 429, 500, 502, 503, 504):
             # Note 404 is in the list because I am not sure if logs are already synced
             # in the artifacts storage when Testing Farm says that the testing is done.
@@ -196,7 +196,7 @@ def get_test_logs(url):
     """
     retry_count = 10
     while retry_count:
-        response = requests.get(url)
+        response = requests.get(requests.utils.requote_uri(url))
         if response.status_code in (404, 429, 500, 502, 503, 504):
             # Note 404 is in the list because I am not sure if logs are already synced
             # in the artifacts storage when Testing Farm says that the testing is done.
@@ -214,7 +214,7 @@ def get_test_logs(url):
 def parse_testcases(testsuite, xml):
     """Parse testcases into the standard JUnit.
 
-    The results will be printed to the stdout.
+   The results will be printed to the stdout.
 
     :param testsuite: Testuite being parsed
     :param xml: XML document to parse
@@ -263,13 +263,12 @@ def parse_testcases(testsuite, xml):
 
     return xml
 
-def parse_package_installation(testsuite, xml):
-    """Parse testcases into the standard JUnit.
 
-    The results will be printed to the stdout.
+def parse_package_installation(testsuite, xml):
+    """Parse package installation steps into the standard JUnit.
 
     :param testsuite: Testsuite being parsed
-    :param xml: XML document to add results
+    :param xml: XML document to extend
     :return: XML document extended with packages installation logs
     """
 
@@ -319,6 +318,38 @@ def parse_package_installation(testsuite, xml):
     return xml
 
 
+def parse_workdir(testsuite, xml):
+    """Parse workdir URL into the standard JUnit.
+
+    :param testsuite: Testsuite being parsed
+    :param xml: XML document to extend
+    :return: XML document extended with workdir link
+    """
+
+    for log in testsuite.logs.log:
+        if 'name' in log.attrib and log.attrib['name'] == 'workdir':
+            add_system_out(xml, log.attrib['href'])
+            break
+
+    return xml
+
+
+def parse_reproducer(testsuite, xml):
+    """Parse workdir URL into the standard JUnit.
+
+    :param testsuite: Testsuite being parsed
+    :param xml: XML document to extend
+    :return: XML document extended with workdir link
+    """
+
+    for log in testsuite.logs.log:
+        if 'name' in log.attrib and log.attrib['name'] == 'tmt-reproducer':
+            add_system_out(xml, get_test_logs(log.attrib['href']))
+            break
+
+    return xml
+
+
 def has_testcases(xml):
       """Check if given TestingFarm XUnit has at least one testcase.
 
@@ -360,6 +391,10 @@ def main(args):
         output_xml = parse_package_installation(testsuite, output_xml)
 
         output_xml = parse_testcases(testsuite, output_xml)
+
+        output_xml = parse_workdir(testsuite, output_xml)
+
+        output_xml = parse_reproducer(testsuite, output_xml)
 
         if not has_testcases(output_xml):
             # likely an infra error; no tests were run so there is nothing to show
