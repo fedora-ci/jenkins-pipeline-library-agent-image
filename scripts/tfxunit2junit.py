@@ -103,7 +103,7 @@ def add_error(xml, test_name, logs, message, classname='tests', docs_url=None, i
 
 def add_skipped(xml, test_name, logs, classname='tests', docs_url=None, issues_url=None):
     """Add entry for a skipped test."""
-    testcase = etree.SubElement(root, 'testcase', name=test_name, classname=classname)
+    testcase = etree.SubElement(xml, 'testcase', name=test_name, classname=classname)
     failure = etree.SubElement(
         testcase,
         'skipped',
